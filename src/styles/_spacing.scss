@@ -1,0 +1,16 @@
+$directions: 'left', 'right', 'top', 'bottom';
+$types: 'margin', 'padding';
+
+@each $type in $types {
+  @for $i from 0 through 6 {
+    .#{$type}--#{$i} {
+      #{$type}: $i * $width-multiplier !important;
+    }
+  
+    @each $dir in $directions {
+      .#{$type}-#{$dir}--#{$i} {
+        #{$type}-#{$dir}: $i * $width-multiplier !important;
+      }
+    }
+  }
+}
