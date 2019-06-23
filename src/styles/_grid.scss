@@ -1,0 +1,21 @@
+.layout-container {
+  margin-left: -2 * $width-multiplier;
+  display: flex;
+  flex-wrap: wrap;
+
+  &:after {
+    @include clearfix;
+  }
+
+  [class*="layout-item--"] {
+    // float: left;
+    padding: 0 (2 * $width-multiplier);
+  }
+
+  @for $i from 1 through 12 {
+    .layout-item--#{$i}of12 {
+      flex: 0 0 (($i / 12) * 100%);
+      max-width: (($i / 12) * 100%);
+    }
+  }
+}

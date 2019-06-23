@@ -1,0 +1,32 @@
+$sidebar-background: #fafbfc;
+
+.sidebar {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid #d5d9e3;
+    border-radius: 4px;
+    overflow: hidden;
+
+    li {
+      &:not(:last-child) {
+        border-bottom: 1px solid #d5d9e3;
+      }
+
+      a {
+        display: block;
+        padding: 16px 16px;
+        border-left: 3px solid $sidebar-background;
+        color: #5d689a;
+        text-decoration: none;
+
+        &.router-link-exact-active {
+          border-left-color: #344278;
+          background: $sidebar-background;
+          color: #595959;
+        }
+      }
+    }
+  }
+}

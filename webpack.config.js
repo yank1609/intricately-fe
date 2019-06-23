@@ -5,6 +5,7 @@ var VueLoaderPlugin = require('vue-loader/lib/plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var globImporter = require('node-sass-glob-importer');
 
 require('dotenv').config();
 
@@ -31,7 +32,8 @@ module.exports = {
       Styles: path.resolve(__dirname, 'src', 'styles'),
       Plugins: path.resolve(__dirname, 'src', 'plugins'),
       Mixins: path.resolve(__dirname, 'src', 'mixins')
-    }
+    },
+    extensions: ['.vue', '.js']
   },
   entry: path.resolve(__dirname, 'src', 'index.js'),
   output: {
@@ -71,7 +73,13 @@ module.exports = {
           'css-loader',
           // see postcss.config.js for options
           'postcss-loader',
-          'sass-loader',
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              importer: globImporter()
+            },
+          }
         ]
       },
       {
@@ -89,8 +97,23 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader'
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/'
+          }
+        }]
       }
-    ]
+    ],
+  },
+  devServer: {
+    historyApiFallback: {
+      index: '/'
+    } 
   },
   plugins: [
     new VueLoaderPlugin(),

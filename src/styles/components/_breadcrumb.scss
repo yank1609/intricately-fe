@@ -1,0 +1,44 @@
+$breadcrumb-font-color: #828282;
+
+.breadcrumb-container {
+  list-style: none;
+
+  &.container {
+    padding: (2 * $width-multiplier) 0;
+    margin-bottom: (2 * $width-multiplier);
+  }
+
+  li {
+    display: inline-block;
+
+    &:not(:last-child) {
+      a, 
+      span {
+        margin-right: 2 * $width-multiplier;
+      }
+    }
+
+    &:not(:first-child) {
+      a, 
+      span { 
+        margin-left: 2 * $width-multiplier;
+        position: relative;
+
+        &:after {
+          content: '/';
+          position: absolute;
+          left: (-2.5 * $width-multiplier);
+          top: 0;
+        }
+      }
+    }
+
+    a, 
+    span {
+      color: $breadcrumb-font-color;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+  }
+}
