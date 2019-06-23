@@ -11,7 +11,7 @@ import { minValue, maxValue } from 'Plugins/custom-validation'
 VeeValidate.Validator.extend('required_min_value', minValue);
 VeeValidate.Validator.extend('required_max_value', maxValue);
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 Vue.use(Vuex);
 Vue.use(VeeValidate);
 

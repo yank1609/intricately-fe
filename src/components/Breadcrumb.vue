@@ -35,7 +35,6 @@ export default {
             }
           })
         }
-
         return prevs.concat(
           [{ label: this.$route.meta.label, url: this.$route.name, current: true }]
         )
